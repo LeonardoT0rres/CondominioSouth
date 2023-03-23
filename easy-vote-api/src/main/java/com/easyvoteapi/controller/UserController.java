@@ -6,6 +6,7 @@ import com.easyvoteapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ public class UserController {
 
     private final UserService service;
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @PostMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -25,6 +27,7 @@ public class UserController {
         return this.service.create(userRequestDto);
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
@@ -32,6 +35,7 @@ public class UserController {
         return this.service.findById(id);
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @GetMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
@@ -39,13 +43,15 @@ public class UserController {
         return this.service.findAll();
     }
 
-    @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('SINDICO', 'CONDOMINO')")
+    @PutMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
-    public UserDto update(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto) {
-        return this.service.update(id, userRequestDto);
+    public UserDto update(@RequestBody UserRequestDto userRequestDto) {
+        return this.service.update(userRequestDto);
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @DeleteMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

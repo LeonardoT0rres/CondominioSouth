@@ -13,6 +13,9 @@ import com.easyvoteapi.utils.enums.Status;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +25,12 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private static final Long CONDOMINO = 1L;
     private final UserRepository repository;
     private final RoleRepository roleRepository;
+    private final AuthService authService;
 
     private BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -85,17 +89,17 @@ public class UserService {
         return result;
     }
 
-    public UserDto update(Long id, UserRequestDto userRequestDto) {
-        var user = repository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Usuário de id " + id + " não encontrado!"));
+    public UserDto update(UserRequestDto userRequestDto) {
+        var user = repository.findById(authService.authenticated().getId())
+                .orElseThrow(() -> new UserNotFoundException("Usuário de id " + authService.authenticated().getId() + " não encontrado!"));
 
         var existUser = repository.findByNameOrEmailAndStatusIdIsNot
-                (userRequestDto.getName(), userRequestDto.getEmail(), Status.ATIVO.name(), id);
+                (userRequestDto.getName(), userRequestDto.getEmail(), Status.ATIVO.name(), authService.authenticated().getId());
 
         if (existUser.isPresent())
             throw new UserAlreadyExistsException("Usuário já cadastrado, os campos 'Nome' e/ou 'Email' já estão sendo utilizados!");
         else if (user.getStatus().equals(Status.INATIVO))
-            throw new InvalidUserStatusException("Status '" + user.getStatus().name() + "' do usuário de id " + id + " inválido para a edição!");
+            throw new InvalidUserStatusException("Status '" + user.getStatus().name() + "' do usuário de id " + authService.authenticated().getId() + " inválido para a edição!");
 
         user.setName(userRequestDto.getName() == null ? user.getName() : userRequestDto.getName());
         user.setEmail(userRequestDto.getEmail() == null ? user.getEmail() : userRequestDto.getEmail());
@@ -115,7 +119,7 @@ public class UserService {
         var result = MapperConstants.userMapper
                 .toDto(repository.save(user));
 
-        log.info("Usuário de id " + id + " editado!");
+        log.info("Usuário de id " + authService.authenticated().getId() + " editado!");
 
         return result;
     }
@@ -133,5 +137,15 @@ public class UserService {
         } else {
             throw new InvalidUserStatusException("Status '" + user.getStatus().name() + "' do usuário de id " + id + " inválido para a deleção!");
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        var user = repository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Email '" + email + "' não encontrado!"));
+
+        log.info("Usuário encontrado: " + email);
+
+        return user;
     }
 }

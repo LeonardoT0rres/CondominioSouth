@@ -8,6 +8,7 @@ import com.easyvoteapi.utils.enums.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ public class AssemblyController {
 
     private final AssemblyService service;
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @PostMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -27,6 +29,7 @@ public class AssemblyController {
         return this.service.create(assemblyRequestDto);
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO', 'CONDOMINO')")
     @GetMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
@@ -34,6 +37,7 @@ public class AssemblyController {
         return this.service.findById(id);
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO', 'CONDOMINO')")
     @GetMapping
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
@@ -41,6 +45,7 @@ public class AssemblyController {
         return this.service.findAll();
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @PutMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
@@ -48,6 +53,7 @@ public class AssemblyController {
         return this.service.update(id, assemblyRequestDto);
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @PatchMapping("/end/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
@@ -55,6 +61,7 @@ public class AssemblyController {
         return this.service.patchFinish(id, assemblyFinishRequestDto);
     }
 
+    @PreAuthorize("hasAnyRole('SINDICO')")
     @DeleteMapping("/{id}")
     @ResponseBody
     @ResponseStatus(code = HttpStatus.NO_CONTENT)

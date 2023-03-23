@@ -45,18 +45,14 @@ export function AuthForm() {
     if (authDataIsValid) {
       if (isLogin) {
         try {
-          const response = await loginPost(authValues);
+          const response = await loginPost({
+            email: 'admin@email.com',
+            password: 'senha123',
+          });
 
           const data = response.data;
-          // [TEMPORÁRIO] Lógica login/token do auth-context COM Firebase (com axios não deu pra pegar o expiresIn, portanto settei 60kk milisegundos = 60k segundos = 1k minutos, se calculei certo... deve dar mais da metade de um dia):
-          const expirationTime: Date = new Date(
-            new Date().getTime() + 60000 * 1000
-          );
 
-          console.log(expirationTime);
-          // Agora fazendo o contexto funcionar:
-          authCtx.login(data.idToken, expirationTime.toISOString());
-          // --------------------------------
+          authCtx.login(data.access_token)
 
           toast.success('Login Realizado!', {
             position: toast.POSITION.TOP_CENTER,

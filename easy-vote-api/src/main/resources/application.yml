@@ -1,7 +1,18 @@
 spring:
   profiles:
     active: local
-
-application:
+  jpa:
+    open-in-view:application: false
   title: easy-vote-api
   version: 1.0.0
+
+jwt:
+  secret: oqueeuacharquedeveser
+  duration: 86400
+
+
+security:
+  oauth2:
+    client:
+      client-id: ds-easy-vote-api
+      client-secret: ds-easy-vote-api-xpto

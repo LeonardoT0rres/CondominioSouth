@@ -23,12 +23,10 @@ public class VoteService {
     private final VoteRepository repository;
     private final UserRepository userRepository;
     private final ScheduleRepository scheduleRepository;
+    private final AuthService authService;
 
-    public VoteDto create(Long scheduleId, Long userId, VoteRequestDto voteRequestDto) {
+    public VoteDto create(Long scheduleId, VoteRequestDto voteRequestDto) {
         var vote = MapperConstants.voteMapper.requestToEntity(voteRequestDto);
-
-        var user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("Usuário de id " + userId + " não encontrado!"));
 
         var schedule = scheduleRepository.findById(scheduleId)
                 .orElseThrow(() -> new ScheduleNotFoundException("Pauta de id " + scheduleId + " não encontrada!"));
@@ -36,14 +34,14 @@ public class VoteService {
         if (schedule.getStatus() != Status.ANDAMENTO)
             throw new InvalidScheduleStatusException("Só é possível votar em pautas em andamento!");
 
-        var voteCheck = repository.findByUserIdAndScheduleId(userId, scheduleId);
+        var voteCheck = repository.findByUserIdAndScheduleId(authService.authenticated().getId(), scheduleId);
         if (voteCheck.isPresent())
             throw new AlreadyVotedException("Seu voto nesta pauta já foi computado!");
 
-        vote.setUserId(userId);
+        vote.setUserId(authService.authenticated().getId());
         vote.setScheduleId(scheduleId);
 
-        log.info("Voto '" + vote.getVote() + "' do usuário '" + user.getName() + "' computado com sucesso!");
+        log.info("Voto '" + vote.getVote() + "' do usuário '" + authService.authenticated().getName() + "' computado com sucesso!");
 
         return MapperConstants.voteMapper.toDto(repository.save(vote))
                 .withVoteMessage("Voto computado com sucesso!");

@@ -1,4 +1,5 @@
-import { api, apiMockLogin, apiMockSignUp } from './api';
+import { AxiosRequestConfig } from 'axios';
+import { api, apiMockLogin } from './api';
 
 function get(url: string) {
   return api.get(url);
@@ -8,12 +9,8 @@ function post<T>(url: string, data: T) {
   return api.post(url, data);
 }
 
-function postMockLogin<T>(url: string, data: T) {
-  return apiMockLogin.post(url, data);
-}
-
-function postMockSignUp<T>(url: string, data: T) {
-  return apiMockSignUp.post(url, data);
+function postLogin<T>(url: string, data: T, config: AxiosRequestConfig) {
+  return apiMockLogin.post(url, data, config);
 }
 
 function put<T>(url: string, data: T) {
@@ -33,6 +30,5 @@ export default {
   post,
   put,
   deleteData,
-  postMockLogin,
-  postMockSignUp,
+  postLogin,
 };
