@@ -1,0 +1,64 @@
+:root {
+  --white: #fff;
+  --light-white: #EDEDED;
+  
+  --gray-50: #f1f1f6;
+  --gray-100: #e1e1e6;
+  --gray-200: #D9D9D9;
+  --gray-300: #c4c4cc;
+  --gray-350: #7C7C8A;
+  --gray-400: #444452;
+  --gray-600: #323238;
+  --gray-700: #29292e;
+  --gray-800: #202024;
+
+  --green-100: #68d368; /*Para hover*/
+  --green-300: #32CD32;
+  --green-400: #3A923A;
+
+  --blue-300: #81D8F7;
+  --blue-700: #213059;
+  --blue-800: #132242;
+
+  --orange: #F58220;
+
+  --red-500: #F27078;
+  --red-800: #e7545e;
+}
+
+input:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--green-100);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*"expreme" o elemento pra dentro, em vez de padding, margin e border aumentarem largura e altura */
+}
+
+body {
+  background: var(--light-white);
+  color: var(--gray-800);
+  -webkit-font-smoothing: antialiased;
+  /*Padronização/afinação de fontes*/
+}
+
+::-webkit-scrollbar{
+  background-color:var(--gray-350);
+  width: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color:var(--gray-600);
+  border-radius: 8px;
+}
+
+/*Elementos que não herdam fonte do body*/
+body,
+input,
+textarea,
+button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1rem; /*Uma unidade relativa do tamanho padrão de 16px, ou seja, é 16px caso os usuários não aumentem ou diminuam suas fontes*/
+}

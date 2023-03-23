@@ -1,0 +1,80 @@
+.assembly {
+  background-color: var(--gray-700);
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+  border-radius: 8px;
+  color: var(--gray-800);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 46rem;
+}
+
+.assembly:last-child {
+  margin-bottom: 2rem;
+}
+
+.assembly:hover {
+  border: 5px solid var(--orange);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.assembly header {
+  width: 100%;
+}
+
+.assembly header .leftSide {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.assembly header .rightSide {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.rightSide button {
+  line-height: 1.5rem;
+}
+
+.assembly header p {
+  color: var(--gray-200);
+  padding: 8px;
+}
+
+.assembly header h2 {
+  font-family: 'Roboto';
+  color: var(--gray-50);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+  .html {
+    font-size: 85%;
+  }
+  .assembly {
+    width: 32rem;
+  }
+  .assembly header {
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 550px) {
+  .assembly {
+    width: 20rem;
+  }
+  .assembly header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}

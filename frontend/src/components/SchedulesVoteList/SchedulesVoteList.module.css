@@ -1,0 +1,87 @@
+.mainContainer h2 {
+  color: var(--gray-800);
+  text-align: center;
+  margin: 0 auto 2rem;
+  max-width: 25rem;
+}
+
+.scheduleVoteContainer {
+  align-items: center;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--gray-800);
+  color: var(--gray-50);
+  padding: 2rem;
+  margin: 0 auto 2rem;
+  height: 40rem;
+  width: 60rem;
+}
+
+.scheduleVoteContainer fieldset{
+  border: hidden;
+}
+
+.scheduleVoteContainer li {
+  align-items: center;
+  background-color: var(--gray-600);
+  border-radius: 16px;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  list-style: none;
+  line-height: 1.5rem;
+  height: 10rem;
+  width: 52rem;
+  padding: 2rem;
+}
+
+.scheduleVoteContainer .timer {
+  border-radius: 8px;
+  color: var(--gray-800);
+  
+  margin: 8px 32px 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-style: solid;
+  border-color: var(--gray-300);
+  
+  width: 2em;
+  height: 2em;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+
+.tableAndResult {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Parentdiv{
+  height: 20px;
+  width: 400px;
+  background-color: var(--red-800);
+  border-radius: 40px;
+}
+
+.Childdiv{
+  
+  background-color: var(--green-300);
+  border-radius:40px;
+  text-align: 'right';
+}
+
+.progresstext{
+  margin-left: 8px;
+  margin-right: 4px;
+  color: 'black';
+  font-weight: 900px;
+}

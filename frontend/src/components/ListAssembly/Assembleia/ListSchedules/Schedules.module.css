@@ -1,0 +1,77 @@
+.container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 16px;
+  padding: 0.5rem;
+}
+
+.container .assembly {
+  background-color: var(--gray-700);
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  align-items: center;
+  padding: 1rem;
+  width: 40rem;
+}
+
+.assembly:hover {
+  border: 3px solid var(--orange);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.assembly header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.assembly div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.assembly div p {
+  color: var(--gray-50);
+  text-align: justify;
+}
+
+.assembly div h3 {
+  text-decoration: underline;
+}
+
+.assembly header h2 {
+  font-family: 'Roboto';
+  color: var(--gray-50);
+}
+
+.assembly button {
+  border-radius: 8px;
+}
+
+.assembly label {
+  font-family: 'Roboto';
+  color: var(--gray-50);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 17px;
+  overflow-wrap: break-word;
+  max-width: 80%;
+}
+
+@media (max-width: 768px) {
+  .assembly header {
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

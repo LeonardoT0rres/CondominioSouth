@@ -1,0 +1,147 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.assemblyContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.assemblyHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 46rem;
+}
+
+.container header button {
+  border-radius: 8px;
+}
+
+.container header .botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  width: 22rem;
+}
+
+.container header h1 {
+  color: var(--gray-800);
+  text-align: center;
+  width: 26rem;
+}
+
+.description {
+  background-color: var(--gray-700);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+  color: var(--gray-50);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  gap: 8px;
+  align-items: flex-start;
+  width: 46rem;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--gray-350);
+  width: 10px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-600);
+  border-radius: 8px;
+}
+
+.description label {
+  color: var(--gray-50);
+  border-radius: 8px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.description hr {
+  color: var(--gray-350);
+  margin-top: 0.75rem;
+  width: 98%;
+}
+
+.lista {
+  background-color: var(--gray-800);
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 5px 15px;
+  color: var(--gray-200);
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  width: 44rem;
+}
+
+.listaVazia {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .assemblyHeader {
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 26rem;
+  }
+
+  .container header .botoes {
+    justify-content: center;
+  }
+
+  .description {
+    width: 28rem;
+  }
+  .container header .botoes {
+    width: 22rem;
+  }
+  .container header h1 {
+    width: 26rem;
+  }
+  .lista {
+    width: 26rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .html {
+    font-size: 85%;
+  }
+  .assemblyHeader {
+    width: 20rem;
+  }
+  .container header .botoes {
+    justify-content: center;
+    width: 20rem;
+  }
+  .container header h1 {
+    width: 20rem;
+  }
+  .description {
+    width: 20rem;
+  }
+  .lista {
+    width: 20rem;
+  }
+}
