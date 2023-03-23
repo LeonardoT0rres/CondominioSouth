@@ -1,0 +1,42 @@
+.items__custom-radio {
+  display: flex;
+}
+
+.items__custom-radio input {
+  display: none;
+}
+.items__custom-radio span {
+  color: var(--gray-300);
+  line-height: 8px;
+  height: 16px;
+  margin-top: 12px;
+  margin-left: 8px;
+}
+
+.items__custom-radio input + label::after {
+  border: 2px solid var(--gray-400);
+  border-radius: 1rem;
+  content: '';
+  cursor: pointer;
+  display: inline-block;
+  height: 18px;
+  vertical-align: middle;
+  width: 18px;
+}
+
+.items__custom-radio input + label:hover {
+  background-color: var(--gray-600);
+  filter: brightness(0.8);
+  transition: 0.3;
+}
+
+.items__custom-radio input:checked + label::after {
+  background-color: var(--gray-400);
+  background-image: url('../../../assets/checkBox.svg');
+  background-position: center center;
+  color: var(--blue-300);
+}
+
+.items__custom-radio input:checked + label:hover {
+  filter: brightness(1.2)
+}

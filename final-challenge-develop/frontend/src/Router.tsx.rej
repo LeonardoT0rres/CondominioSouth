@@ -1,0 +1,10 @@
+diff a/frontend/src/Router.tsx b/frontend/src/Router.tsx	(rejected hunks)
+@@ -10,7 +10,7 @@
+       <Route path='/' element={<Layout />}>
+         <Route path='/' element={<Home />} />
+ 
+-        <Route path='/auth' element={<AuthPage /> /*AQUI VAI FORMULÁRIO*/} />
++        <Route path='/auth' element={<AuthPage />} />
+ 
+         <Route
+           path='/pautas'

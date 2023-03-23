@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+
+  easy-vote-api:
+    container_name: easy-vote-api
+    image: desafio-final/easy-vote-api:v1
+    build: ./easy-vote-api
+    restart: always
+    ports:
+      - "8081:8080"
+    environment:
+      - URL_POSTGRES=jdbc:postgresql://postgres:5432/easy-vote-api
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=easy-vote-api
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345

@@ -1,0 +1,11 @@
+ ,-----.                  ,--.      ,---.                  ,--.  ,--.
+'  .--./ ,---. ,--,--,  ,-|  |     '   .-'  ,---.,--.,--.,-'  '-.|  ,---.
+|  |    | .-. ||      \' .-. |     `.  `-. | .-. |  ||  |'-.  .-'|  .-.  |
+'  '--'\' '-' '|  ||  |\ `-' |.--. .-'    |' '-' '  ''  '  |  |  |  | |  |
+ `-----' `---' `--''--' `---' '--' `-----'  `---' `----'   `--'  `--' `--'
+${application.title}                       ${application.version}
+Powered by Spring Boot              ${spring-boot.version}
+
+Backend Developers: Artur Bertoni, Jhean Alves and Pedro Stregue
+Frontend Developers: Leonardo Masera and Lucas Burch
+Quality Assurance Developer: Lyene Benvenutti
