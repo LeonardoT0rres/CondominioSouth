@@ -1,2 +1,2 @@
-# final-challenge
-Application developed in a team with the objective of creating an application capable of managing a system of assemblies and schedules of a condominium
+# Desafio Final
+Aplicativo desenvolvido em equipe com o objetivo de criar um aplicativo capaz de gerenciar um sistema de assembleias e agendamentos de um condomínio
